@@ -2,12 +2,12 @@
 
 namespace Tracing
 {
-    internal class OuterClass
+    internal class Outer
     {
         private readonly Inner _innerClass;
         private readonly ITracer _tracer;
 
-        internal OuterClass(ITracer tracer)
+        internal Outer(ITracer tracer)
         {
             _tracer = tracer;
             _innerClass = new Inner(_tracer);
