@@ -1,8 +1,21 @@
-﻿namespace TracingLibrary.Trace
+﻿using System.Collections.Immutable;
+using System.Xml.Serialization;
+
+namespace TracingLibrary.Trace
 {
-    public class TraceResult(List<ThreadInfo> threadsData)
+    public class TraceResult
     {
-        public IReadOnlyList<ThreadInfo> Threads => [.. threadsData];
-        public List<ThreadInfo> Data => [.. Threads];
+        [XmlElement("Thread")]
+        public List<ThreadInfo> Threads { get; set; }
+
+        public TraceResult(List<ThreadInfo> threadsInfo)
+        {
+            Threads = threadsInfo;
+        }
+
+        public TraceResult()
+        {
+            Threads = new List<ThreadInfo>();
+        }
     }
 }

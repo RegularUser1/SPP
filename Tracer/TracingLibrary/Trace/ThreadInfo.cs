@@ -5,5 +5,7 @@
         public readonly int ThreadId = threadId;
         public readonly long Time = time;
         public readonly List<MethodInfo> Methods = methods;
+
+        public ThreadInfo() : this(default, default, []) { }
     }
 }

@@ -1,10 +1,12 @@
 ﻿namespace TracingLibrary.Data
 {
-    public class MyWriter : IWriter
+    public class MyWriter(ISerializer serializer) : IWriter
     {
+        private readonly ISerializer _serializer = serializer;
+
         public void Write(object obj, TextWriter writer)
         {
-            throw new NotImplementedException();
+            writer.Write(_serializer.Serialize(obj));
         }
     }
 }
