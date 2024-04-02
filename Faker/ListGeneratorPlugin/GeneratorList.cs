@@ -1,9 +1,6 @@
-﻿using FakerLab.Generators;
-using FakerLab.Generators.CollectionGenerators;
-
-namespace IntGeneratorPlugin
+﻿namespace FakerLab.Generators.CollectionGenerators
 {
-    public class ListGenerator<T, TGenerator> : IGenerator<List<T>>
+    public class GeneratorList<T, TGenerator> : IGenerator<List<T>>
         where TGenerator : IGenerator<T>, new()
     {
         public List<T> Generate()
