@@ -20,4 +20,17 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FakerLab\FakerLab.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Plugins\DateTimeGeneratorPlugin.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Plugins\ListGeneratorPlugin.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
