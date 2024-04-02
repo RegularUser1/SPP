@@ -1,6 +1,6 @@
 ﻿namespace DateTimeGeneratorPlugin
 {
-    public class Class1
+    public class DateTimeGenerator
     {
 
     }

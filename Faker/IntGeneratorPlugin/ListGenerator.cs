@@ -1,6 +1,6 @@
 ﻿namespace IntGeneratorPlugin
 {
-    public class Class1
+    public class ListGenerator
     {
 
     }
