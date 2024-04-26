@@ -1,4 +1,5 @@
-﻿using DependencyInjectionContainer.Sample.Interface;
+﻿using DependencyInjectionContainer.Container.Attributes;
+using DependencyInjectionContainer.Sample.Interface;
 
 namespace DependencyInjectionContainer.Sample.Implementation
 {

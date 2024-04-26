@@ -1,4 +1,5 @@
-﻿using DependencyInjectionContainer.Sample.Interface;
+﻿using DependencyInjectionContainer.Container.Attributes;
+using DependencyInjectionContainer.Sample.Interface;
 
 namespace DependencyInjectionContainer.Sample.Implementation
 {
@@ -6,7 +7,7 @@ namespace DependencyInjectionContainer.Sample.Implementation
     {
         public IService1 Service { get; set; }
 
-        public DependsOnService1(IService1 service)
+        public DependsOnService1([DependencyKey("A")] IService1 service)
         {
             Service = service;
         }

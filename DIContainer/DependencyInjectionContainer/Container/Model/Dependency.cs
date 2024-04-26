@@ -1,4 +1,5 @@
-﻿using DependencyInjectionContainer.Container.Exceptions;
+﻿using DependencyInjectionContainer.Container.Attributes;
+using DependencyInjectionContainer.Container.Exceptions;
 using DependencyInjectionContainer.Container.Interface;
 
 namespace DependencyInjectionContainer.Container.Model
@@ -47,8 +48,20 @@ namespace DependencyInjectionContainer.Container.Model
 
                 if (parameterType.IsInterface && configuration.Container.TryGetValue(parameterType, out var value))
                 {
-                    parameters[i] = value.FirstOrDefault()?.GetInstance(configuration)
-                        ?? throw new DependencyProviderException($"Type for {parameterType} not found");
+                    if (parametersInfo[i].IsDefined(typeof(DependencyKeyAttribute), false))
+                    {
+                        var attribute = parametersInfo[i]
+                            .GetCustomAttributes(typeof(DependencyKeyAttribute), false)
+                            .FirstOrDefault()
+                            as DependencyKeyAttribute
+                            ?? throw new InstanceCreationException($"Unable to find DependencyKeyAttribute for {parameterType}");
+                        parameters[i] = value.Where(d => d.Name is not null && d.Name.Equals(attribute.Name)).FirstOrDefault()?.GetInstance(configuration);
+                    }
+                    else
+                    {
+                        parameters[i] = value.FirstOrDefault()?.GetInstance(configuration)
+                            ?? throw new DependencyProviderException($"Type for {parameterType} not found");
+                    }
                 }
                 else
                 {
