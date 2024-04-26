@@ -1,4 +1,5 @@
-﻿using DependencyInjectionContainer.Container.Interface;
+﻿using DependencyInjectionContainer.Container.Exceptions;
+using DependencyInjectionContainer.Container.Interface;
 using DependencyInjectionContainer.Container.Model;
 
 namespace DependencyInjectionContainer.Container
@@ -10,7 +11,17 @@ namespace DependencyInjectionContainer.Container
         public void Register(Type interfaceType, Type implementationType, LifeCycle lifeCycle = LifeCycle.Transient,
             string? name = null)
         {
-            throw new NotImplementedException();
+            if (implementationType.IsAbstract)
+            {
+                throw new DependencyConfigurationException(
+                    $"Abstract type {implementationType} cannot be used as Implementation");
+            }
+
+            if (!Container.ContainsKey(interfaceType))
+            {
+                Container[interfaceType] = [];
+            }
+            Container[interfaceType].Add(new Dependency(implementationType, lifeCycle, name));
         }
 
         public void Register<Interface, Implementation>(LifeCycle lifeCycle = LifeCycle.Transient, string? name = null)
